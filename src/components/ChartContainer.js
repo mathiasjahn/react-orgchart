@@ -26,7 +26,8 @@ const propTypes = {
   collapsible: PropTypes.bool,
   multipleSelect: PropTypes.bool,
   onClickNode: PropTypes.func,
-  onClickChart: PropTypes.func
+  onClickChart: PropTypes.func,
+  onDrop: PropTypes.func
 };
 
 const defaultProps = {
@@ -56,7 +57,8 @@ const ChartContainer = forwardRef(
       collapsible,
       multipleSelect,
       onClickNode,
-      onClickChart
+      onClickChart,
+      onDrop
     },
     ref
   ) => {
@@ -243,6 +245,9 @@ const ChartContainer = forwardRef(
       await dsDigger.removeNode(draggedItemData.id);
       await dsDigger.addChildren(dropTargetId, draggedItemData);
       setDS({ ...dsDigger.ds });
+      if (onDrop) {
+        onDrop(draggedItemData, dropTargetId);
+      }
     };
 
     useImperativeHandle(ref, () => ({
