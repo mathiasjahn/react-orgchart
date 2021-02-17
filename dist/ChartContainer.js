@@ -87,7 +87,7 @@ var ChartContainer = (0, _react.forwardRef)(function (_ref, ref) {
       collapsible = _ref.collapsible,
       multipleSelect = _ref.multipleSelect,
       onClickNode = _ref.onClickNode,
-      onClickChart = _ref.onClickChart;
+      onClickChart = _ref.onClickChart,
       onDrop = _ref.onDrop;
   var container = (0, _react.useRef)();
   var chart = (0, _react.useRef)();
@@ -328,10 +328,11 @@ var ChartContainer = (0, _react.forwardRef)(function (_ref, ref) {
             case 4:
               setDS(_objectSpread({}, dsDigger.ds));
 
-            case 5:
               if (onDrop) {
-                onDrop(draggedItemData, dropTargetId)
+                onDrop(draggedItemData, dropTargetId);
               }
+
+            case 6:
             case "end":
               return _context.stop();
           }
